@@ -1,6 +1,6 @@
 from flask import Flask, render_template_string
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='/static')
 
 HTML = """
 <!DOCTYPE html>
@@ -299,4 +299,6 @@ def home():
     return render_template_string(HTML)
 
 if __name__ == "__main__":
-    app.run(debug=True , port=8080)
+import os
+app.run(host="0.0.0.0",
+        port=int(os.environ.get("PORTT" , 8080)))
